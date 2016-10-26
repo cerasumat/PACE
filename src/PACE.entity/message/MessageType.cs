@@ -2,9 +2,16 @@
 
 namespace PACE.entity.message
 {
+	/// <summary>
+	/// message type enum
+	/// </summary>
 	[Serializable]
 	public enum MessageType
 	{
+		/// <summary>
+		/// maps to internal infomations
+		/// </summary>
+		Pace,
 		/// <summary>
 		/// maps to one resource url
 		/// </summary>

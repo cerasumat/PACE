@@ -1,17 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PACE.entity.message
 {
 	/// <summary>
 	/// Runtime collected data interfaces
-	/// Author : JiaKai
 	/// </summary>
 	public interface IMessage
 	{
 		/// <summary>
 		/// Initialized to be 'TRUE'.
 		/// </summary>
-		bool IsSuccess { get; set; }
+		bool IsSuccess { get; }
 
 		/// <summary>
 		/// Return whether the Complete() method was called, false means not. 
@@ -21,7 +21,7 @@ namespace PACE.entity.message
 		/// <summary>
 		/// Get the key-value pairs data
 		/// </summary>
-		object Data { get; }
+		IDictionary<string, string> Data { get; }
 
 		/// <summary>
 		/// Get the	message name.
@@ -56,7 +56,7 @@ namespace PACE.entity.message
 		/// </summary>
 		/// <param name="key">key-value pair key</param>
 		/// <param name="value">key-value pair value</param>
-		void AddData(string key, object value);
+		void AddData(string key, string value);
 
 		/// <summary>
 		/// Set the message status.
@@ -69,6 +69,12 @@ namespace PACE.entity.message
 		/// </summary>
 		/// <param name="e">exception and Derived exceptions</param>
 		void SetStatus(Exception e);
+
+		/// <summary>
+		/// Set the complete status
+		/// </summary>
+		/// <param name="isComplete">true means completed.</param>
+		void SetComplete(bool isComplete);
 
 		/// <summary>
 		/// Complete the message construction.

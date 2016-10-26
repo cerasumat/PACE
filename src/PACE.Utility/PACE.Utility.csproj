@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5C917011-C76D-4D90-820D-33B76B13B9C8}</ProjectGuid>
+    <ProjectGuid>{E82F5E9D-7450-4999-8500-30A4A826987B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PACE.entity</RootNamespace>
-    <AssemblyName>PACE.entity</AssemblyName>
+    <RootNamespace>PACE.Utility</RootNamespace>
+    <AssemblyName>PACE.Utility</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,29 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="message\inter\AbstractMessage.cs" />
-    <Compile Include="message\inter\DefaultEvent.cs" />
-    <Compile Include="message\IEvent.cs" />
-    <Compile Include="message\IHeartbeat.cs" />
-    <Compile Include="message\IMessage.cs" />
-    <Compile Include="message\IMetric.cs" />
-    <Compile Include="message\inter\DefaultHeartbeat.cs" />
-    <Compile Include="message\inter\DefaultMetric.cs" />
-    <Compile Include="message\inter\DefaultTrace.cs" />
-    <Compile Include="message\inter\DefaultTransaction.cs" />
-    <Compile Include="message\ITrace.cs" />
-    <Compile Include="message\ITransaction.cs" />
-    <Compile Include="message\MessageStatus.cs" />
-    <Compile Include="message\MessageType.cs" />
-    <Compile Include="message\spi\IMessageManager.cs" />
-    <Compile Include="message\spi\IMessageTree.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PACE.Utility\PACE.Utility.csproj">
-      <Project>{e82f5e9d-7450-4999-8500-30a4a826987b}</Project>
-      <Name>PACE.Utility</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
