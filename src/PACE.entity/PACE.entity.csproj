@@ -39,16 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="message\IForkedTransaction.cs" />
     <Compile Include="message\inter\AbstractMessage.cs" />
     <Compile Include="message\inter\DefaultEvent.cs" />
     <Compile Include="message\IEvent.cs" />
     <Compile Include="message\IHeartbeat.cs" />
     <Compile Include="message\IMessage.cs" />
     <Compile Include="message\IMetric.cs" />
+    <Compile Include="message\inter\DefaultForkedTransaction.cs" />
     <Compile Include="message\inter\DefaultHeartbeat.cs" />
     <Compile Include="message\inter\DefaultMetric.cs" />
     <Compile Include="message\inter\DefaultTrace.cs" />
     <Compile Include="message\inter\DefaultTransaction.cs" />
+    <Compile Include="message\ITaggedTransaction.cs" />
     <Compile Include="message\ITrace.cs" />
     <Compile Include="message\ITransaction.cs" />
     <Compile Include="message\MessageStatus.cs" />
