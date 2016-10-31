@@ -8,6 +8,7 @@ namespace PACE.entity.message.inter
 	{
 		protected AbstractMessage(MessageType type, string name)
 		{
+			Id = new MessageIdFactory("Default").GetNextId();
 			Type = type;
 			Name = name;
 			Timestamp = DateTime.Now;
@@ -15,6 +16,7 @@ namespace PACE.entity.message.inter
 			IsComplete = false;
 		}
 
+		public MessageId Id { get; private set; }
 		public bool IsSuccess { get { return Status.Equals(MessageStatus.Success.ToString()); } }
 		public bool IsComplete { get; private set; }
 		public IDictionary<string, string> Data { get; private set; }

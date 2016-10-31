@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PACE.entity.message.inter;
 
 namespace PACE.entity.message
 {
@@ -8,6 +9,7 @@ namespace PACE.entity.message
 	/// </summary>
 	public interface IMessage
 	{
+		MessageId Id { get; }
 		/// <summary>
 		/// Initialized to be 'TRUE'.
 		/// </summary>

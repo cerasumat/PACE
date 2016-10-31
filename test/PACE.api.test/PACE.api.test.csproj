@@ -105,6 +105,10 @@
       <Project>{5c917011-c76d-4d90-820d-33b76b13b9c8}</Project>
       <Name>PACE.entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\PACE.Utility\PACE.Utility.csproj">
+      <Project>{e82f5e9d-7450-4999-8500-30a4a826987b}</Project>
+      <Name>PACE.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
