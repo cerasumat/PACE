@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace PACE.entity.message.inter
 {
-	public class AbstractMessage : IMessage
+	public abstract class AbstractMessage : IMessage
 	{
-		public AbstractMessage(MessageType type, string name)
+		protected AbstractMessage(MessageType type, string name)
 		{
 			Type = type;
 			Name = name;
@@ -66,9 +66,7 @@ namespace PACE.entity.message.inter
 			IsComplete = isComplete;
 		}
 
-		public virtual void Complete()
-		{
-		}
+		public abstract void Complete();
 
 		public override string ToString()
 		{

@@ -29,6 +29,10 @@ namespace PACE.entity.message
 		/// </summary>
 		Method,
 		/// <summary>
+		/// maps to sys events
+		/// </summary>
+		Event,
+		/// <summary>
 		/// maps to one SQL statement
 		/// </summary>
 		Sql,

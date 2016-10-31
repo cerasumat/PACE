@@ -14,12 +14,12 @@ namespace PACE.entity.message.inter
 		private long _durationStart;
 		private long _durationInMillis;
 
-		public DefaultTransaction(MessageType type, string name) : base(type, name){}
+		public DefaultTransaction(MessageType type, string name) : this(type, name, null){}
 
 		public DefaultTransaction(MessageType type, string name, IMessageManager manager) : base(type, name)
 		{
 			_manager = manager;
-			_isRoot = true;
+			_isRoot = false;
 			_durationStart = DateTime.Now.ToMilliseconds();
 			_durationInMillis = -1;
 		}

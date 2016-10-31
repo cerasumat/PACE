@@ -10,5 +10,6 @@ namespace PACE.entity.message
 	{
 		public static string Success = "0";
 		public static string TransactionAlreadyComplete = "This Transaction has already completed.";
+		public static string EventComplete = "Event complete";
 	}
 }

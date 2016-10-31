@@ -11,6 +11,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACE.entity", "src\PACE.ent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACE.Utility", "src\PACE.Utility\PACE.Utility.csproj", "{E82F5E9D-7450-4999-8500-30A4A826987B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0804AC2F-9A7D-4FDE-B1E3-35891398FD99}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACE.client", "src\PACE.client\PACE.client.csproj", "{546711E3-F92F-4A38-BC1E-2BC504CFC1DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PACE.api.test", "test\PACE.api.test\PACE.api.test.csproj", "{DA78FF3C-A0FE-4D39-AC81-DB1F03E9D972}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +35,14 @@ Global
 		{E82F5E9D-7450-4999-8500-30A4A826987B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E82F5E9D-7450-4999-8500-30A4A826987B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E82F5E9D-7450-4999-8500-30A4A826987B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{546711E3-F92F-4A38-BC1E-2BC504CFC1DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{546711E3-F92F-4A38-BC1E-2BC504CFC1DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{546711E3-F92F-4A38-BC1E-2BC504CFC1DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{546711E3-F92F-4A38-BC1E-2BC504CFC1DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA78FF3C-A0FE-4D39-AC81-DB1F03E9D972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA78FF3C-A0FE-4D39-AC81-DB1F03E9D972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA78FF3C-A0FE-4D39-AC81-DB1F03E9D972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA78FF3C-A0FE-4D39-AC81-DB1F03E9D972}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,5 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5C917011-C76D-4D90-820D-33B76B13B9C8} = {DADACB2E-059C-4B74-9644-7DD33C576D58}
 		{E82F5E9D-7450-4999-8500-30A4A826987B} = {DADACB2E-059C-4B74-9644-7DD33C576D58}
+		{546711E3-F92F-4A38-BC1E-2BC504CFC1DC} = {DADACB2E-059C-4B74-9644-7DD33C576D58}
+		{DA78FF3C-A0FE-4D39-AC81-DB1F03E9D972} = {E2979BF3-1C27-4BEF-81D2-39B311BE43FB}
 	EndGlobalSection
 EndGlobal

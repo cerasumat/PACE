@@ -23,7 +23,7 @@ namespace PACE.entity.message.inter
 			{
 				_rootMessageId = tree.RootMessageId;
 				_parentMessageId = tree.MessageId;
-				_forkedMessageId = 
+				//_forkedMessageId = PACE.CreateMessageId();
 			}
 		}
 
@@ -34,7 +34,7 @@ namespace PACE.entity.message.inter
 
 		public string GetForkedMessageId()
 		{
-			throw new NotImplementedException();
+			return _forkedMessageId;
 		}
 	}
 }

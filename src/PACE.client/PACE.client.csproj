@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5C917011-C76D-4D90-820D-33B76B13B9C8}</ProjectGuid>
+    <ProjectGuid>{546711E3-F92F-4A38-BC1E-2BC504CFC1DC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PACE.entity</RootNamespace>
-    <AssemblyName>PACE.entity</AssemblyName>
+    <RootNamespace>PACE.client</RootNamespace>
+    <AssemblyName>PACE.client</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,32 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="message\IForkedTransaction.cs" />
-    <Compile Include="message\inter\AbstractMessage.cs" />
-    <Compile Include="message\inter\DefaultEvent.cs" />
-    <Compile Include="message\IEvent.cs" />
-    <Compile Include="message\IHeartbeat.cs" />
-    <Compile Include="message\IMessage.cs" />
-    <Compile Include="message\IMetric.cs" />
-    <Compile Include="message\inter\DefaultForkedTransaction.cs" />
-    <Compile Include="message\inter\DefaultHeartbeat.cs" />
-    <Compile Include="message\inter\DefaultMetric.cs" />
-    <Compile Include="message\inter\DefaultTrace.cs" />
-    <Compile Include="message\inter\DefaultTransaction.cs" />
-    <Compile Include="message\inter\MessageId.cs" />
-    <Compile Include="message\ITaggedTransaction.cs" />
-    <Compile Include="message\ITrace.cs" />
-    <Compile Include="message\ITransaction.cs" />
-    <Compile Include="message\MessageStatus.cs" />
-    <Compile Include="message\MessageType.cs" />
-    <Compile Include="message\spi\IMessageManager.cs" />
-    <Compile Include="message\spi\IMessageTree.cs" />
+    <Compile Include="Aop\PaceAttribute.cs" />
+    <Compile Include="Aop\PaceFilterAttribute.cs" />
+    <Compile Include="Handler\AbstractMessageSink.cs" />
+    <Compile Include="Handler\DefaultMessageSink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PACE.Utility\PACE.Utility.csproj">
-      <Project>{e82f5e9d-7450-4999-8500-30a4a826987b}</Project>
-      <Name>PACE.Utility</Name>
+    <ProjectReference Include="..\PACE.entity\PACE.entity.csproj">
+      <Project>{5c917011-c76d-4d90-820d-33b76b13b9c8}</Project>
+      <Name>PACE.entity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
