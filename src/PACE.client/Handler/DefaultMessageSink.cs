@@ -100,6 +100,7 @@ namespace PACE.client.Handler
 								currentTran.AddChild(child);
 							}
 						}
+						currentTran.Complete();
 						childTrans.Add(currentTran);
 					}
 					else

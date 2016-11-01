@@ -5,14 +5,14 @@ namespace PACE.entity.message.spi
 {
 	public class MessageStack
 	{
-		private readonly ConcurrentStack<IMessage> _messageStack;
+		private readonly ConcurrentStack<ITransaction> _messageStack;
 
 		public MessageStack()
 		{
-			_messageStack = new ConcurrentStack<IMessage>();
+			_messageStack = new ConcurrentStack<ITransaction>();
 		}
 
-		public bool Push(IMessage message)
+		public bool Push(ITransaction message)
 		{
 			try
 			{
@@ -25,16 +25,16 @@ namespace PACE.entity.message.spi
 			}
 		}
 
-		public IMessage Pop()
+		public ITransaction Pop()
 		{
-			IMessage message;
+			ITransaction message;
 			_messageStack.TryPop(out message);
 			return message;
 		}
 
-		public IMessage Peek()
+		public ITransaction Peek()
 		{
-			IMessage message;
+			ITransaction message;
 			_messageStack.TryPeek(out message);
 			return message;
 		}

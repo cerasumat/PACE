@@ -18,13 +18,13 @@ namespace PACE.entity.message.inter
 		public DefaultForkedTransaction(MessageType type, string name, IMessageManager manager) : base(type, name, manager)
 		{
 			SetRoot(false);
-			IMessageTree tree = manager.GetThreadLocalMessageTree();
-			if (null != tree)
-			{
-				_rootMessageId = tree.RootMessageId;
-				_parentMessageId = tree.MessageId;
-				//_forkedMessageId = PACE.CreateMessageId();
-			}
+			//IMessageTree tree = manager.GetThreadLocalMessageTree();
+			//if (null != tree)
+			//{
+			//	_rootMessageId = tree.RootMessageId;
+			//	_parentMessageId = tree.MessageId;
+			//	//_forkedMessageId = PACE.CreateMessageId();
+			//}
 		}
 
 		public void Fork()

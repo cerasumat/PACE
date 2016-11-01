@@ -7,40 +7,56 @@ using System.Web;
 using PACE.client.Aop;
 using PACE.entity.message;
 using PACE.entity.message.inter;
+using PACE.entity.message.spi;
 
 namespace PACE.api.test.Models
 {
-	[Pace]
 	public class TestBiz : ContextBoundObject
 	{
-		[PaceMethod]
 		public string GetVersion()
 		{
-			var transaction = CallContext.GetData("_current") as DefaultTransaction;
-			if (null != transaction)
+			//var stack = CallContext.GetData("_current") as MessageStack;
+			//if (null != stack)
+			//{
+			//	DefaultEvent ev = new DefaultEvent(MessageType.Method, "Call 1st Method.");
+			//	ev.SetStatus(MessageStatus.Success);
+			//	ev.Complete();
+			//	stack.Push(ev);	
+			//}
+			//Thread.Sleep(new Random().Next(100));
+			//DoSomething();
+			//var biz2 = new TestBiz2();
+			//biz2.DoSomething2();
+			//biz2.DoSomething3();
+			//return "1.0.1";
+			using (var mng = new DefaultMessageManager())
 			{
-				DefaultEvent ev = new DefaultEvent(MessageType.Method, "Call Biz Method.");
-				ev.SetStatus(MessageStatus.Success);
-				ev.Complete();
-				transaction.AddChild(ev);	
+				mng.Event("Call 1st Method.");
+				Thread.Sleep(new Random().Next(100));
+				DoSomething();
+				var biz2 = new TestBiz2();
+				biz2.DoSomething2();
+				biz2.DoSomething3();
+				return "1.0.1";
 			}
-			Thread.Sleep(new Random().Next(100));
-			DoSomething();
-			return "1.0.1";
 		}
 
-		[PaceMethod]
 		private void DoSomething()
 		{
-			var transaction = CallContext.GetData("_current") as DefaultTransaction;
-			if (null != transaction)
+			//var stack = CallContext.GetData("_current") as MessageStack;
+			//if (null != stack)
+			//{
+			//	DefaultEvent ev = new DefaultEvent(MessageType.Method, "Call 2nd Method.");
+			//	ev.SetStatus(MessageStatus.Success);
+			//	ev.Complete();
+			//	stack.Push(ev);
+			//}
+			//Thread.Sleep(new Random().Next(100));
+			using (var mng = new DefaultMessageManager())
 			{
-				DefaultEvent ev = new DefaultEvent(MessageType.Method, "Call private Method.");
-				ev.SetStatus(MessageStatus.Success);
-				ev.Complete();
-				transaction.AddChild(ev);
+				mng.Trace("Call 2nd Method.");
+				Thread.Sleep(new Random().Next(100));
 			}
-			Thread.Sleep(new Random().Next(100));
 		}
 	}
 }

@@ -16,10 +16,10 @@ namespace PACE.entity.message.inter
 		public override void Complete()
 		{
 			SetComplete(true);
-			if (null != _manager)
-			{
-				_manager.Add(this);
-			}
+			//if (null != _manager)
+			//{
+			//	_manager.Add(this);
+			//}
 		}
 	}
 }

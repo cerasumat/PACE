@@ -98,10 +98,10 @@ namespace PACE.entity.message.inter
 				{
 					_durationInMillis = DateTime.Now.ToMilliseconds() - _durationStart;
 					SetComplete(true);
-					if (null != _manager)
-					{
-						_manager.End(this);
-					}
+					//if (null != _manager)
+					//{
+					//	_manager.End(this);
+					//}
 				}
 			}
 			catch (Exception)
