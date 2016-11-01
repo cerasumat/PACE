@@ -53,5 +53,13 @@ namespace PACE.entity.message.inter
 		{
 			return string.Format("{0}-{1}-{2}-{3}", Domain, IpAddress, TimeStamp, Index);
 		}
+
+		public override bool Equals(object obj)
+		{
+			var id = obj as MessageId;
+			if (null == id)
+				return false;
+			return Domain == id.Domain && IpAddress == id.IpAddress && TimeStamp == id.TimeStamp && Index == id.Index;
+		}
 	}
 }

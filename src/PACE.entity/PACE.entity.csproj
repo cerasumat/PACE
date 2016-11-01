@@ -60,6 +60,7 @@
     <Compile Include="message\MessageType.cs" />
     <Compile Include="message\spi\IMessageManager.cs" />
     <Compile Include="message\spi\IMessageTree.cs" />
+    <Compile Include="message\spi\MessageStack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
