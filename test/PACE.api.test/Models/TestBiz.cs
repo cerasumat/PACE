@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Runtime.Remoting.Messaging;
 using System.Threading;
 using System.Web;
@@ -11,6 +12,7 @@ using PACE.entity.message.spi;
 
 namespace PACE.api.test.Models
 {
+	[Synchronization]
 	public class TestBiz : ContextBoundObject
 	{
 		public string GetVersion()
@@ -33,7 +35,7 @@ namespace PACE.api.test.Models
 			{
 				mng.Event("Call 1st Method.");
 				Thread.Sleep(new Random().Next(100));
-				DoSomething();
+				DoSomething("XXXXXX");
 				var biz2 = new TestBiz2();
 				biz2.DoSomething2();
 				biz2.DoSomething3();
@@ -41,7 +43,7 @@ namespace PACE.api.test.Models
 			}
 		}
 
-		private void DoSomething()
+		private void DoSomething(string msg)
 		{
 			//var stack = CallContext.GetData("_current") as MessageStack;
 			//if (null != stack)
@@ -52,8 +54,17 @@ namespace PACE.api.test.Models
 			//	stack.Push(ev);
 			//}
 			//Thread.Sleep(new Random().Next(100));
-			using (var mng = new DefaultMessageManager())
+			using (var mng = new DefaultMessageManager(msg))
 			{
+				try
+				{
+					throw new ArgumentException("exception inner 2nd method.");
+				}
+				catch (Exception exp)
+				{
+					mng.Error(exp);
+					return;
+				}
 				mng.Trace("Call 2nd Method.");
 				Thread.Sleep(new Random().Next(100));
 			}

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="message\IException.cs" />
     <Compile Include="message\IForkedTransaction.cs" />
     <Compile Include="message\inter\AbstractMessage.cs" />
     <Compile Include="message\inter\DefaultEvent.cs" />
@@ -46,6 +47,7 @@
     <Compile Include="message\IHeartbeat.cs" />
     <Compile Include="message\IMessage.cs" />
     <Compile Include="message\IMetric.cs" />
+    <Compile Include="message\inter\DefaultException.cs" />
     <Compile Include="message\inter\DefaultForkedTransaction.cs" />
     <Compile Include="message\inter\DefaultHeartbeat.cs" />
     <Compile Include="message\inter\DefaultMetric.cs" />

@@ -2,8 +2,10 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using PACE.entity.message.inter;
 
@@ -24,12 +26,13 @@ namespace PACE.entity.message.spi
 		/// </summary>
 		private readonly ConcurrentQueue<IMessage> _queue;
 
-		public DefaultMessageManager()
+		public DefaultMessageManager(params object[] args)
 		{
 			_stack = CallContext.GetData(StackKey) as MessageStack;
 			if (null == _stack) return;
 			_queue = new ConcurrentQueue<IMessage>();
 			var methodTrans = new DefaultTransaction(MessageType.Method, "Call Method.");
+			methodTrans.Parameters = args;
 			_stack.Push(methodTrans);
 			CallContext.SetData(StackKey, _stack);
 		}
@@ -77,6 +80,24 @@ namespace PACE.entity.message.spi
 			trace.SetStatus(MessageStatus.Success);
 			trace.Complete();
 			_queue.Enqueue(trace);
+			return true;
+		}
+
+		public bool Error(Exception exp)
+		{
+			DefaultException e = new DefaultException(MessageType.Error, exp.Message, exp);
+			e.SetStatus(MessageStatus.Success);
+			e.Complete();
+			_queue.Enqueue(e);
+			return true;
+		}
+
+		public bool Error(string errorMessage)
+		{
+			DefaultException e = new DefaultException(MessageType.Error, errorMessage, errorMessage);
+			e.SetStatus(MessageStatus.Success);
+			e.Complete();
+			_queue.Enqueue(e);
 			return true;
 		}
 	}

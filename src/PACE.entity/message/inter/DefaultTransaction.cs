@@ -89,10 +89,10 @@ namespace PACE.entity.message.inter
 			{
 				if (IsComplete)
 				{
-					DefaultEvent ev = new DefaultEvent(MessageType.Pace, "Bad Operation");
-					ev.SetStatus(MessageStatus.TransactionAlreadyComplete);
-					ev.Complete();
-					AddChild(ev);
+					DefaultException ex = new DefaultException(MessageType.Pace, "Bad Operation", "Transaction completed already.");
+					ex.SetStatus(MessageStatus.TransactionAlreadyComplete);
+					ex.Complete();
+					AddChild(ex);
 				}
 				else
 				{

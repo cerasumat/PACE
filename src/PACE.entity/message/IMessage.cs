@@ -25,6 +25,8 @@ namespace PACE.entity.message
 		/// </summary>
 		IDictionary<string, string> Data { get; }
 
+		object[] Parameters { get; set; }
+
 		/// <summary>
 		/// Get the	message name.
 		/// </summary>

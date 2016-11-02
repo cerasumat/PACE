@@ -21,6 +21,7 @@ namespace PACE.entity.message.inter
 		public bool IsComplete { get; private set; }
 		public IDictionary<string, string> Data { get; private set; }
 		public string Name { get; private set; }
+		public object[] Parameters { get; set; }
 		public string Status { get; private set; }
 		public MessageType Type { get; private set; }
 		public DateTime Timestamp { get; private set; }

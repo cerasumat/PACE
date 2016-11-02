@@ -92,5 +92,7 @@ namespace PACE.entity.message.spi
 	{
 		bool Event(string msg);
 		bool Trace(string msg);
+		bool Error(Exception exp);
+		bool Error(string errorMessage);
 	}
 }
