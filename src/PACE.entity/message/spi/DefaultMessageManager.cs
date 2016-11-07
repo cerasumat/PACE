@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Contexts;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -31,7 +33,7 @@ namespace PACE.entity.message.spi
 			_stack = CallContext.GetData(StackKey) as MessageStack;
 			if (null == _stack) return;
 			_queue = new ConcurrentQueue<IMessage>();
-			var methodTrans = new DefaultTransaction(MessageType.Method, "Call Method.");
+			var methodTrans = new DefaultTransaction(MessageType.Method, (new StackFrame(1, false)).GetMethod().Name);
 			methodTrans.Parameters = args;
 			_stack.Push(methodTrans);
 			CallContext.SetData(StackKey, _stack);
@@ -83,19 +85,27 @@ namespace PACE.entity.message.spi
 			return true;
 		}
 
-		public bool Error(Exception exp)
+		public bool Error(Exception exp, [CallerMemberName] string caller = "",
+			 [CallerFilePath] string path = "", [CallerLineNumber] int line = 0)
 		{
 			DefaultException e = new DefaultException(MessageType.Error, exp.Message, exp);
 			e.SetStatus(MessageStatus.Success);
+			e.CallerName = caller;
+			e.FilePath = path;
+			e.LineNum = line;
 			e.Complete();
 			_queue.Enqueue(e);
 			return true;
 		}
 
-		public bool Error(string errorMessage)
+		public bool Error(string errorMessage, [CallerMemberName] string caller = "",
+			 [CallerFilePath] string path = "", [CallerLineNumber] int line = 0)
 		{
 			DefaultException e = new DefaultException(MessageType.Error, errorMessage, errorMessage);
 			e.SetStatus(MessageStatus.Success);
+			e.CallerName = caller;
+			e.FilePath = path;
+			e.LineNum = line;
 			e.Complete();
 			_queue.Enqueue(e);
 			return true;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace PACE.entity.message.inter
 {
@@ -9,7 +10,8 @@ namespace PACE.entity.message.inter
 			InnerException = exp;
 		}
 
-		public DefaultException(MessageType type, string name, string exp) : base(type, name)
+		public DefaultException(MessageType type, string name, string exp)
+			: base(type, name)
 		{
 			InnerException = new Exception(exp);
 		}
@@ -20,5 +22,8 @@ namespace PACE.entity.message.inter
 		}
 
 		public Exception InnerException { get; set; }
+		public string CallerName { get; set; }
+		public string FilePath { get; set; }
+		public int LineNum { get; set; }
 	}
 }
