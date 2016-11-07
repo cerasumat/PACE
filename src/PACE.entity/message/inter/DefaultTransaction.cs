@@ -83,6 +83,16 @@ namespace PACE.entity.message.inter
 			return _isRoot;
 		}
 
+		//public string HttpRequestId()
+		//{
+		//	throw new NotImplementedException();
+		//}
+
+		//public int HttpRequestIndex()
+		//{
+		//	throw new NotImplementedException();
+		//}
+
 		public override void Complete()
 		{
 			try

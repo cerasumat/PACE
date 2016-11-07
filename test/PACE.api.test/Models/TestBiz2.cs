@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Threading;
-using System.Web;
 using PACE.client.Aop;
 using PACE.entity.message;
 using PACE.entity.message.inter;
@@ -18,8 +14,11 @@ namespace PACE.api.test.Models
 		{
 			using (var mng = new DefaultMessageManager())
 			{
-				mng.Trace("Call 3rd Method.");
+				mng.Trace("Call 3rd Method Step 1.");
+				var trace = new DefaultTrace(MessageType.Method, "Call 3rd Method Step 2.");
+				mng.Trace<DefaultTrace>(trace);
 				Thread.Sleep(new Random().Next(100));
+				DoSomething3();
 			}
 		}
 

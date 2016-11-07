@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.Remoting.Contexts;
 using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using PACE.entity.message.inter;
 
 namespace PACE.entity.message.spi
@@ -76,9 +70,27 @@ namespace PACE.entity.message.spi
 			return true;
 		}
 
+		public bool Event<T>(T ev) where T : AbstractMessage, IEvent
+		{
+			if (null == ev) return false;
+			ev.SetStatus(MessageStatus.Success);
+			ev.Complete();
+			_queue.Enqueue(ev);
+			return true;
+		}
+
 		public bool Trace(string msg)
 		{
 			DefaultTrace trace = new DefaultTrace(MessageType.Method, msg);
+			trace.SetStatus(MessageStatus.Success);
+			trace.Complete();
+			_queue.Enqueue(trace);
+			return true;
+		}
+
+		public bool Trace<T>(T trace) where T : AbstractMessage, ITrace
+		{
+			if (null == trace) return false;
 			trace.SetStatus(MessageStatus.Success);
 			trace.Complete();
 			_queue.Enqueue(trace);
@@ -95,6 +107,18 @@ namespace PACE.entity.message.spi
 			e.LineNum = line;
 			e.Complete();
 			_queue.Enqueue(e);
+			return true;
+		}
+
+		public bool Error<T>(T exp, [CallerMemberName] string caller = "", [CallerFilePath] string path = "",
+			[CallerLineNumber] int line = 0) where T : AbstractMessage, IException
+		{
+			exp.SetStatus(MessageStatus.Success);
+			exp.CallerName = caller;
+			exp.FilePath = path;
+			exp.LineNum = line;
+			exp.Complete();
+			_queue.Enqueue(exp);
 			return true;
 		}
 

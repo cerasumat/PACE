@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Security.Cryptography.X509Certificates;
+using PACE.entity.message.inter;
 
 namespace PACE.entity.message.spi
 {
@@ -91,8 +92,11 @@ namespace PACE.entity.message.spi
 	public interface IMessageManager : IDisposable
 	{
 		bool Event(string msg);
+		bool Event<T>(T ev) where T : AbstractMessage, IEvent;
 		bool Trace(string msg);
+		bool Trace<T>(T trace) where T : AbstractMessage, ITrace;
 		bool Error(Exception exp, string caller,string path,int line);
+		bool Error<T>(T exp, string caller, string path, int line) where T : AbstractMessage, IException;
 		bool Error(string errorMessage, string caller,string path,int line);
 	}
 }

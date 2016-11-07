@@ -52,5 +52,19 @@ namespace PACE.entity.message
 		/// </summary>
 		/// <returns>true if it's an root transaction.</returns>
 		bool IsRoot();
+
+		/// <summary>
+		/// Get value for the root transaction
+		/// New value from the begining of the http request chain,
+		/// same value from the internal call of the biz.
+		/// </summary>
+		/// <returns></returns>
+		//string HttpRequestId();
+
+		/// <summary>
+		/// Indicate the http request count in a http transaction
+		/// </summary>
+		/// <returns></returns>
+		//int HttpRequestIndex();
 	}
 }

@@ -40,7 +40,6 @@ namespace PACE.api.test.Models
 				DoSomething("XXXXXX");
 				var biz2 = new TestBiz2();
 				biz2.DoSomething2();
-				biz2.DoSomething3();
 				return "1.0.1";
 			}
 		}
