@@ -29,6 +29,17 @@ namespace PACE.api.test.Models
 			{
 				mng.Trace("Call 4th Method.");
 				Thread.Sleep(new Random().Next(100));
+				DoSomething4();
+			}
+		}
+
+		[PaceMethod]
+		public void DoSomething4()
+		{
+			using (var mng = new DefaultMessageManager())
+			{
+				mng.Trace("Call 5th Method.");
+				Thread.Sleep(new Random().Next(100));
 			}
 		}
 	}

@@ -71,16 +71,16 @@ namespace PACE.client.Handler
 			else
 			{
 				// Method executing
-				var stack = CallContext.GetData(StackKey) as MessageStack;
+				var stack = CallContext.LogicalGetData(StackKey) as MessageStack;
 				if (null == stack) stack = new MessageStack();
 				var methodTrans = new DefaultTransaction(MessageType.Method, "Call Method.");
 				stack.Push(methodTrans);
-				CallContext.SetData(StackKey, stack);
+				CallContext.LogicalSetData(StackKey, stack);
 				// Call method sync
 				rtnMessage = NextSink.SyncProcessMessage(msg);
 				// Method executed
 				// 消息出栈处理，构建消息链式消息容器结构
-				stack = CallContext.GetData(StackKey) as MessageStack;
+				stack = CallContext.LogicalGetData(StackKey) as MessageStack;
 				if (null == stack) return rtnMessage;
 
 				var childEvents = new List<entity.message.IMessage>();
@@ -120,7 +120,7 @@ namespace PACE.client.Handler
 				}
 				currentTrans.Complete();
 				stack.Push(currentTrans);
-				CallContext.SetData(StackKey, stack);
+				CallContext.LogicalSetData(StackKey, stack);
 			}
 			return rtnMessage;
 		}

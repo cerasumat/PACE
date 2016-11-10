@@ -57,15 +57,15 @@ namespace PACE.api.test.Models
 			//Thread.Sleep(new Random().Next(100));
 			using (var mng = new DefaultMessageManager(msg))
 			{
-				try
-				{
-					throw new ArgumentException("exception inner 2nd method.");
-				}
-				catch (Exception exp)
-				{
-					mng.Error(exp);
-					return;
-				}
+				//try
+				//{
+				//	throw new ArgumentException("exception inner 2nd method.");
+				//}
+				//catch (Exception exp)
+				//{
+				//	mng.Error(exp);
+				//	return;
+				//}
 				mng.Trace("Call 2nd Method.");
 				Thread.Sleep(new Random().Next(100));
 			}

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using Newtonsoft.Json;
 using PACE.entity.message;
 using PACE.entity.message.inter;
 using PACE.entity.message.spi;
@@ -34,7 +35,7 @@ namespace PACE.client.Aop
 			transaction.SetRoot(true);
 			_currentId = transaction.Id;
 			stack.Push(transaction);
-			CallContext.SetData(StackKey, stack);
+			CallContext.LogicalSetData(StackKey, stack);
 			//var stopWatch = new Stopwatch();
 			//actionContext.Request.Properties[Key] = stopWatch;
 			//stopWatch.Start(); 
@@ -60,7 +61,7 @@ namespace PACE.client.Aop
 			//	// TODO: MessageManager handle the _root infomation 
 			//}
 
-			MessageStack stack = CallContext.GetData(StackKey) as MessageStack;
+			MessageStack stack = CallContext.LogicalGetData(StackKey) as MessageStack;
 			if(null == stack) return;
 			var subMessages = new List<entity.message.IMessage>();
 			while (stack.Count() > 1)
@@ -74,6 +75,9 @@ namespace PACE.client.Aop
 				rootMessage.AddChild(msg);
 			}
 			rootMessage.Complete();
+
+			//var json = JsonConvert.SerializeObject(rootMessage);
+			//TODO: IO
 			var newId = new MessageIdFactory().GetNextId();
 
 			var actionName = actionExecutedContext.ActionContext.ActionDescriptor.ActionName;

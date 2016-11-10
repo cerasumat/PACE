@@ -20,6 +20,8 @@ namespace PACE.entity.message
 	/// </summary>
 	public interface ITransaction : IMessage
 	{
+		IEnumerable<IMessage> Children { get; }
+
 		/// <summary>
 		/// Add one nested child message to current transaction.
 		/// </summary>
@@ -41,6 +43,10 @@ namespace PACE.entity.message
 		/// <returns>duration time in millisecond</returns>
 		long GetDurationInMillis();
 
+		long DurationInMillis { get; }
+
+		long DurationStart { get; }
+
 		/// <summary>
 		/// Has children or not. An atomic transaction does not have any children message.
 		/// </summary>
@@ -52,6 +58,8 @@ namespace PACE.entity.message
 		/// </summary>
 		/// <returns>true if it's an root transaction.</returns>
 		bool IsRoot();
+
+		bool Root { get; }
 
 		/// <summary>
 		/// Get value for the root transaction

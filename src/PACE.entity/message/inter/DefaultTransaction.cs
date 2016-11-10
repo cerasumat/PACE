@@ -24,6 +24,11 @@ namespace PACE.entity.message.inter
 			_durationInMillis = -1;
 		}
 
+		public IEnumerable<IMessage> Children
+		{
+			get { return _children; } 
+		}
+
 		public ITransaction AddChild(IMessage message)
 		{
 			if (null == _children)
@@ -73,6 +78,16 @@ namespace PACE.entity.message.inter
 			}
 		}
 
+		public long DurationInMillis
+		{
+			get { return _durationInMillis; }
+		}
+
+		public long DurationStart
+		{
+			get { return _durationStart; }
+		}
+
 		public bool HasChildren()
 		{
 			return null != _children && _children.Count > 0;
@@ -82,6 +97,8 @@ namespace PACE.entity.message.inter
 		{
 			return _isRoot;
 		}
+
+		public bool Root { get { return _isRoot; } }
 
 		//public string HttpRequestId()
 		//{

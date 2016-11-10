@@ -24,13 +24,13 @@ namespace PACE.entity.message.spi
 
 		public DefaultMessageManager(params object[] args)
 		{
-			_stack = CallContext.GetData(StackKey) as MessageStack;
+			_stack = CallContext.LogicalGetData(StackKey) as MessageStack;
 			if (null == _stack) return;
 			_queue = new ConcurrentQueue<IMessage>();
 			var methodTrans = new DefaultTransaction(MessageType.Method, (new StackFrame(1, false)).GetMethod().Name);
 			methodTrans.Parameters = args;
 			_stack.Push(methodTrans);
-			CallContext.SetData(StackKey, _stack);
+			CallContext.LogicalSetData(StackKey, _stack);
 		}
 
 
@@ -41,7 +41,7 @@ namespace PACE.entity.message.spi
 		/// </summary>
 		public void Dispose()
 		{
-			_stack = CallContext.GetData(StackKey) as MessageStack;
+			_stack = CallContext.LogicalGetData(StackKey) as MessageStack;
 			if (null == _stack || _stack.Count() < 1) return;
 			ITransaction current = _stack.Pop();
 			while (_queue.Count>0)
